@@ -35,18 +35,18 @@ const dataPenjualanNovel = [
       totalTerjual: 20,
       sisaStok: 56,
     },
-  ];
+];
   
-  function getInfoPenjualan(dataPenjualanNovel) {}
-  
-  console.log(getInfoPenjualan(dataPenjualanNovel))
-  // EXPECTED OUTPUT => OBJECT seperti di bawah ini
-  /*
-  {
+function getInfoPenjualan(dataPenjualanNovel) {}
+
+console.log(getInfoPenjualan(dataPenjualanNovel))
+// EXPECTED OUTPUT => OBJECT seperti di bawah ini
+/*
+{
     totalKeuntungan = 'Rp. 10.000.000',
     totalModal = 'Rp. 6.000.000',
     persentaseKeuntungan = '60%',
     produkBukuTerlaris = sesuai data ,
     penulisTerlaris = sesuai data
-  }
-  */
+}
+*/
