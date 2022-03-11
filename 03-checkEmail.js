@@ -1,4 +1,15 @@
 function checkEmail(email) {
+
+    /* logic : 
+    - cek type data dari parameter email, 
+        1. kalo string diproses lagi => buat variabel regex sesuai email dan regex nama user 
+            - kalo sesuai var regex email => outputnya 'VALID'
+            - kalo sesuai regex nama aja => outputnya message error
+            - selain kondisi di atas => outputnya 'INVALID'
+        2. kalo ga dilihat apakah number atau tanpa parameter => maka akan di return message error
+
+    */
+
     if ( typeof email === 'string' ) {
       
     var regexEmail = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
@@ -20,6 +31,7 @@ function checkEmail(email) {
     else {
         return 'ERROR: Bro, where is the parameter?';
     }  
+
 };
 
 console.log(checkEmail('apranata@binar.co.id')) //OUTPUT yang keluar ==> 'VALID'

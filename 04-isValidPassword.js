@@ -1,4 +1,12 @@
 function isValidPassword(givenPassword) {
+
+    /* LOGIC :
+        - cek type data dari parameter inputan => givenPassword, 
+        1. kalo string diproses lagi => buat variabel regex sesuai kriteria password (terdiri dari 8 huruf, ada huruf besar, ada huruf kecil, dan ada angka)
+            - kalo sesuai sama var regex kriterianya => outputnya true
+            - selain kondisi di atas => outputnya false
+        2. kalo bukan string, dilihat apakah tanpa parameter atau tipe data lain => maka akan di return message error  
+    */
   
     if ( typeof givenPassword === 'string' ) {
       var regexPass = new RegExp( '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8})' );

@@ -26,11 +26,17 @@ const dataPenjualanPakAldi = [
 ]
 
 function hitungTotalPenjualan(dataPenjualan) {
+
+  /*logic :
+  menggunakan conditional statement if else untuk mengecek tipe data dari inputan dataPenjualan
+  1. jika tipe data dari inputan dataPenjualan adalah array => buat variabel untuk array baru dan menghitung total penjualan dari array
+  2. jika tidak memenuhi kondisi di atas => return error message
+  */ 
   
   if (typeof dataPenjualan === "object") {
-    let jumlahPenjualanTotal = dataPenjualan
-      .map((item) => item.totalTerjual)
-      .reduce((totalSebelum, totalJual) => totalSebelum + totalJual, 0);
+
+    let jumlahPenjualanTotal = dataPenjualan.map( (item) => item.totalTerjual ).reduce( (totalSebelum, totalJual ) => totalSebelum + totalJual, 0);
+
     return jumlahPenjualanTotal;
   } 
   else {

@@ -1,4 +1,10 @@
 function getAngkaTerbesarKedua(dataNumbers) {
+
+    /* logic :
+    menggunakan conditional statement if else untuk mengecek tipe data dari inputan dataNumbers
+    1. jika tipe data dari inputan dataNumbers adalah array => buat variabel untuk sorting angka secara ascending dan mengambil angka terbesar kedua dari array
+    2. kalo tipe data dari inputan dataNumbers = null atau bukan array => return error message
+    */
   
     if ( typeof dataNumbers === 'object' ) {
       const secondLargestNumber = dataNumbers.sort( (a,b) => {return a - b} )[dataNumbers.length-2];
