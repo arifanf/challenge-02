@@ -37,7 +37,7 @@ const dataPenjualanNovel = [
     },
 ];
   
-function getInfoPenjualan(dataPenjualanNovel) {}
+function getInfoPenjualan(dataPenjualan) {
 
 /* logic :
 1. hitung totalKeuntungan = (hargaJual - hargaBeli) * totalTerjual * total
@@ -47,7 +47,20 @@ function getInfoPenjualan(dataPenjualanNovel) {}
 5. return dalam bentuk object 
 */
 
-const jumlahUntung = dataPenjualanNovel.map( (item) => {tem} )
+    const jumlahUntung = dataPenjualan.map( item => (item.hargaJual - item.hargaBeli) * item.totalTerjual );
+    const totalKeuntungan = jumlahUntung.reduce( (totalSebelum, totalJual ) => totalSebelum + totalJual, 0);
+
+    const jumlahModal = dataPenjualan.map( item => (item.totalTerjual + item.sisaStok) * item.hargaBeli );
+    const totalModal = jumlahModal.reduce( (totalSebelum, totalJual ) => totalSebelum + totalJual, 0);
+    
+    const persentaseKeuntungan = (totalModal / totalKeuntungan) * 100;
+    return { 
+      totalKeuntungan, 
+      totalModal, 
+      persentaseKeuntungan
+    };
+
+};
 
 console.log(getInfoPenjualan(dataPenjualanNovel))
 // EXPECTED OUTPUT => OBJECT seperti di bawah ini
