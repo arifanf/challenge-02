@@ -39,36 +39,56 @@ const dataPenjualanNovel = [
   
 function getInfoPenjualan(dataPenjualan) {
 
-/* logic :
-1. hitung totalKeuntungan = (hargaJual - hargaBeli) * totalTerjual * total
-2. hitung totalModal =  (totalTerjual + sisaStok) * hargaBeli * total
-3. hitung persentaseKeuntungan = (totalModal / totalKeuntungan) * 100%
-4. cari produkBukuTerlaris dan penulisTerlaris yang sesuai dengan jumlah buku yang banyak terjual
-5. return dalam bentuk object 
-*/
+  /* logic :
+  1. hitung totalKeuntungan = (hargaJual - hargaBeli) * totalTerjual * total
+  2. hitung totalModal =  (totalTerjual + sisaStok) * hargaBeli * total
+  3. hitung persentaseKeuntungan = (totalModal / totalKeuntungan) * 100%
+  4. cari produkBukuTerlaris dan penulisTerlaris yang sesuai dengan jumlah buku yang banyak terjual
+  5. return dalam bentuk object 
+  */
 
-    const jumlahUntung = dataPenjualan.map( item => (item.hargaJual - item.hargaBeli) * item.totalTerjual );
-    const sumKeuntungan = jumlahUntung.reduce( (totalSebelum, totalJual ) => totalSebelum + totalJual, 0);
+  if (typeof dataPenjualan === 'object' ) {
+    // totalKeuntungan
+    const jumlahUntung = dataPenjualan.map( item => (item.hargaJual - item.hargaBeli) * item.totalTerjual ).reduce( (totalSebelum, totalJual ) => totalSebelum + totalJual, 0);
 
-    const jumlahModal = dataPenjualan.map( item => (item.totalTerjual + item.sisaStok) * item.hargaBeli );
-    const sumModal = jumlahModal.reduce( (totalSebelum, totalJual ) => totalSebelum + totalJual, 0);
-    
-    const persentaseUntung = ((sumKeuntungan / sumModal) * 100).toFixed(1);
+    // totalModal
+    const jumlahModal = dataPenjualan.map( item => (item.totalTerjual + item.sisaStok) * item.hargaBeli ).reduce( (totalSebelum, totalJual ) => totalSebelum + totalJual, 0);
 
+    // persentaseKeuntungan
+    const persentaseUntung = ((jumlahUntung / jumlahModal) * 100).toFixed(1);
+
+    // agar totalKeuntungan dan totalModal memiliki format uang Rupiah
     function konversiKeRupiah(angka) {
-        var rupiah = '';		
-        var angkaReverse = angka.toString().split('').reverse().join(''); // dibalik dulu biar gampang ambil 3 angka
-        for( var i = 0; i < angkaReverse.length; i++ ) 
-            if( i % 3 == 0) rupiah += angkaReverse.substr(i,3) + '.';
-        return 'Rp. ' + rupiah.split('', rupiah.length-1).reverse().join('');
+      var rupiah = '';		
+      var angkaReverse = angka.toString().split('').reverse().join(''); // dibalik dulu biar gampang ambil 3 angka
+      for( var i = 0; i < angkaReverse.length; i++ ) 
+        if( i % 3 == 0) rupiah += angkaReverse.substr(i,3) + '.';
+      return 'Rp. ' + rupiah.split('', rupiah.length-1).reverse().join('');
     };
+
+    // produkBukuTerlaris
+    // const bukuTerlaris = Math.max(...dataPenjualan.map( item => item.totalTerjual) );
+
+  //   const buku = dataPenjualan.reduce( (produk, item) => {
+  //     if ( item.totalTerjual === bukuTerlaris ) {
+  //       return produk = item.namaProduk;
+  //       // return produk;
+  //     }
+  //   }, 0 );
+    // penulisTerlaris
 
     return { 
-      totalKeuntungan: konversiKeRupiah(sumKeuntungan), 
-      totalModal: konversiKeRupiah(sumModal), 
+      totalKeuntungan: konversiKeRupiah(jumlahUntung), 
+      totalModal: konversiKeRupiah(jumlahModal), 
       persentaseKeuntungan: persentaseUntung + ' %',
-    };
-
+      // produkBukuTerlaris: buku,
+      // penulisTerlaris: 
+    }  
+  }
+  else {
+    return 'INVALID DATA INPUT'
+  }
+  
 };
 
 console.log(getInfoPenjualan(dataPenjualanNovel))
