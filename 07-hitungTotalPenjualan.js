@@ -35,7 +35,7 @@ function hitungTotalPenjualan(dataPenjualan) {
   
   if (typeof dataPenjualan === "object") {
 
-    let jumlahPenjualanTotal = dataPenjualan.map( (item) => item.totalTerjual ).reduce( (totalSebelum, totalJual ) => totalSebelum + totalJual, 0);
+    const jumlahPenjualanTotal = dataPenjualan.map( (item) => item.totalTerjual ).reduce( (totalSebelum, totalJual ) => totalSebelum + totalJual, 0);
 
     return jumlahPenjualanTotal;
   } 

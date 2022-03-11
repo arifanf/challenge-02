@@ -39,14 +39,24 @@ const dataPenjualanNovel = [
   
 function getInfoPenjualan(dataPenjualanNovel) {}
 
+/* logic :
+1. hitung totalKeuntungan = (hargaJual - hargaBeli) * totalTerjual * total
+2. hitung totalModal =  (totalTerjual + sisaStok) * hargaBeli * total
+3. hitung persentaseKeuntungan = (totalModal / totalKeuntungan) * 100%
+4. cari produkBukuTerlaris dan penulisTerlaris yang sesuai dengan jumlah buku yang banyak terjual
+5. return dalam bentuk object 
+*/
+
+const jumlahUntung = dataPenjualanNovel.map( (item) => {tem} )
+
 console.log(getInfoPenjualan(dataPenjualanNovel))
 // EXPECTED OUTPUT => OBJECT seperti di bawah ini
 /*
 {
-    totalKeuntungan = 'Rp. 10.000.000',
-    totalModal = 'Rp. 6.000.000',
-    persentaseKeuntungan = '60%',
-    produkBukuTerlaris = sesuai data ,
-    penulisTerlaris = sesuai data
+    totalKeuntungan : 'Rp. 10.000.000',
+    totalModal : 'Rp. 6.000.000',
+    persentaseKeuntungan : '60%',
+    produkBukuTerlaris : sesuai data ,
+    penulisTerlaris : sesuai data
 }
 */
