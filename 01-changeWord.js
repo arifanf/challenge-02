@@ -5,12 +5,6 @@ function changeWord(selectedText, changedText, text) {
     // contoh mencintai --> selectedText[0] : m --> M {
         // membenci = M + embenci }
     // return diubah(Mencintai, Membenci)
-    // tidak memakai uppercase
-    /*if ( selectedText[0] ) {
-            changedText = changedText[0] + changedText.slice(1)
-        }
-        return text.replace(selectedText, changedText)
-    }*/
 
     // conditional statement
     if ( selectedText[0] === selectedText[0].toUpperCase() ) {

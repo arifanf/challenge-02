@@ -48,16 +48,25 @@ function getInfoPenjualan(dataPenjualan) {
 */
 
     const jumlahUntung = dataPenjualan.map( item => (item.hargaJual - item.hargaBeli) * item.totalTerjual );
-    const totalKeuntungan = jumlahUntung.reduce( (totalSebelum, totalJual ) => totalSebelum + totalJual, 0);
+    const sumKeuntungan = jumlahUntung.reduce( (totalSebelum, totalJual ) => totalSebelum + totalJual, 0);
 
     const jumlahModal = dataPenjualan.map( item => (item.totalTerjual + item.sisaStok) * item.hargaBeli );
-    const totalModal = jumlahModal.reduce( (totalSebelum, totalJual ) => totalSebelum + totalJual, 0);
+    const sumModal = jumlahModal.reduce( (totalSebelum, totalJual ) => totalSebelum + totalJual, 0);
     
-    const persentaseKeuntungan = (totalModal / totalKeuntungan) * 100;
+    const persentaseUntung = ((sumKeuntungan / sumModal) * 100).toFixed(1);
+
+    function konversiKeRupiah(angka) {
+        var rupiah = '';		
+        var angkaReverse = angka.toString().split('').reverse().join(''); // dibalik dulu biar gampang ambil 3 angka
+        for( var i = 0; i < angkaReverse.length; i++ ) 
+            if( i % 3 == 0) rupiah += angkaReverse.substr(i,3) + '.';
+        return 'Rp. ' + rupiah.split('', rupiah.length-1).reverse().join('');
+    };
+
     return { 
-      totalKeuntungan, 
-      totalModal, 
-      persentaseKeuntungan
+      totalKeuntungan: konversiKeRupiah(sumKeuntungan), 
+      totalModal: konversiKeRupiah(sumModal), 
+      persentaseKeuntungan: persentaseUntung + ' %',
     };
 
 };
